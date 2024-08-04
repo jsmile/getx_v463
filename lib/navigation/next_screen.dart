@@ -21,6 +21,7 @@ class NextScreen extends StatelessWidget {
             Text(
               'argument: ${Get.arguments}',
               style: const TextStyle(fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
             ),
             Text(
               'parameter: ${Get.parameters["id"]}',
