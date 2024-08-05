@@ -23,7 +23,7 @@ class ReactiveStateManagement extends StatelessWidget {
   // final items = Rx<List<String>>( [] );
   // final myMap = Rx<Map<String, int>>( {} );
 
-  // // Custom Class
+  // // Custom Class - It can be any class
   // final user = Rx<User>( User( name:'Ruize', age: 30 ) );
 
   // The third is more practical, easier and preferred approach.
@@ -34,22 +34,24 @@ class ReactiveStateManagement extends StatelessWidget {
   final items = <String>[].obs;
   final myMap = <String, int>{}.obs;
 
-  // Custom Class
+  // Custom Class - observer class( 일반 속성인 class 는 .obs 와 함께 선언해야 함. )
   final user = User(name: 'Ruize', age: 30).obs;
-  // // Atribute inside User class is observer
+
+  // // class 의 속성들이 observer 인 경우 .obs 없이 선언
   // final user = User();
 
   void increment() => count.value++;
   void toUpper() {
-    // // Atribute inside User class is observer
+    // // 3. class 의 속성들이 observer 인 경우 .value 를 사용하여 접근하고 수정 가능
     // user.name.value = user.name.value.toUpperCase();
     // user.age.value++;
 
-    // // Entire User class is observer
+    // // 속성이 아닌 class 가 observer 인 경우 속성 수정 시 .update() 메소드 사용 필요
     // // 1. using update() method
-    // user.update((user) {
-    //   user!.name = user.name.toUpperCase();
-    //   user.age++;
+    // user.update((user) {            // user :  observable object
+    //   // .update() 내에서는 .value 를 추가적으로 사용할 필요가 없음.
+    //   user!.name = user.name.toUpperCase(); // observer 는 직접 수정은 불가하고.
+    //   user.age = user.age + 1;              // 수정한 내용을 다시 할당해야 함
     // });
 
     // // 2. An Alternative way of updating the user variable
@@ -69,13 +71,21 @@ class ReactiveStateManagement extends StatelessWidget {
             children: [
               Obx(
                 () => Text(
-                  '${count.value}',
+                  '${count.value}', // 수정이 아닌 조회 시에는 .value 사용
                   style: const TextStyle(fontSize: 30),
                 ),
               ),
               // Obx(
               //   () => Text(
+              //      // class 가 observer 인 경우 class 뒤에 .value 사용하여 접근
               //     '${user.value.name} ${user().age}',
+              //     style: const TextStyle(fontSize: 30),
+              //   ),
+              // ),
+              // Obx(
+              //   () => Text(
+              //     // class 의 속성들이 observer 인 경우 속성 뒤에 .value 를 사용하여 접근
+              //     '${user.name.value} ${user.age.value}',
               //     style: const TextStyle(fontSize: 30),
               //   ),
               // ),
@@ -86,6 +96,11 @@ class ReactiveStateManagement extends StatelessWidget {
           onPressed: () => increment(),
           child: const Icon(Icons.add),
         ),
+        // Attributes inside User class are observers
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () => toUpper(),
+        //   child: const Icon(Icons.arrow_upward),
+        // ),
       ),
     );
   }
