@@ -6,7 +6,7 @@ class SimpleStateController extends GetxController {
   static SimpleStateController get to => Get.find<SimpleStateController>();
 
   int counter = 0;
-  // final name = 'Ruize'.obs;
+  final name = 'Ruize'.obs; // GetX<Controller> 사용 시 필요
 
   increment() {
     counter++;
