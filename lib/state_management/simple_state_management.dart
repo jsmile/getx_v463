@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,12 +19,32 @@ class SimpleStateManagement extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // On your Stateless/Stateful widget, use GetBuilder()
+              // GetBuilder<T> : controller 클래스에 일반 속성만 선언되어 있는 경우에 사용가능
               GetBuilder<SimpleStateController>(
+                // Init it only the first time
                 init: SimpleStateController(),
-                builder: builder,
+                builder: (controller) => Text(
+                  '${controller.counter}',
+                  // '${SimpleStateController.to.counter}',
+                  style: const TextStyle(fontSize: 30),
+                ),
               ),
+              // // GetX<T> : controller 클래스에 oberver 속성이 선언되어 있는 경우에 사용가능
+              // GetX<SimpleStateController>(
+              //   builder: (controller) => Text(
+              //     controller.name.value,
+              //     style: const TextStyle(fontSize: 30),
+              //   ),
+              // ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => SimpleStateController.to.increment,
+          // Get.find<T>() :  직접 호출 가능
+          // onPressed: () => Get.find<SimpleStateController>().increment,
+          child: const Icon(Icons.add),
         ),
       ),
     );
