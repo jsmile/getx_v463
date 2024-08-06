@@ -8,6 +8,9 @@ class SimpleStateManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // // GetBuilder() 없이 GetxController 사용 시 Get.put( <controller 클래스 생성자> ) 로 선언
+    // Get.put(SimpleStateController());
+
     return GetMaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -39,9 +42,9 @@ class SimpleStateManagement extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => SimpleStateController.to.increment(),
+          // onPressed: () => SimpleStateController.to.increment(),
           // Get.find<T>() :  직접 호출 가능
-          // onPressed: () => Get.find<SimpleStateController>().increment,
+          onPressed: () => Get.find<SimpleStateController>().increment(),
           child: const Icon(Icons.add),
         ),
       ),
