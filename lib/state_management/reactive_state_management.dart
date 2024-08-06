@@ -53,6 +53,7 @@ class ReactiveStateManagement extends StatelessWidget {
       // .update() 내에서는 .value 를 추가적으로 사용할 필요가 없음.
       user!.name = user.name.toUpperCase(); // observer 는 직접 수정은 불가하고.
       user.age = user.age + 1; // 수정한 내용을 다시 할당해야 함
+      // user.age = user.age++;  // user 만이 observer 이므로 user.age++ 는 적용되지 않음
     });
 
     // // 2. An Alternative way of updating the user variable
