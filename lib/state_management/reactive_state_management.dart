@@ -46,13 +46,14 @@ class ReactiveStateManagement extends StatelessWidget {
     // user.name.value = user.name.value.toUpperCase();
     // user.age.value++;
 
-    // // 속성이 아닌 class 가 observer 인 경우 속성 수정 시 .update() 메소드 사용 필요
-    // // 1. using update() method
-    // user.update((user) {            // user :  observable object
-    //   // .update() 내에서는 .value 를 추가적으로 사용할 필요가 없음.
-    //   user!.name = user.name.toUpperCase(); // observer 는 직접 수정은 불가하고.
-    //   user.age = user.age + 1;              // 수정한 내용을 다시 할당해야 함
-    // });
+    // 속성이 아닌 class 가 observer 인 경우 속성 수정 시 .update() 메소드 사용 필요
+    // 1. using update() method
+    user.update((user) {
+      // user :  observable object
+      // .update() 내에서는 .value 를 추가적으로 사용할 필요가 없음.
+      user!.name = user.name.toUpperCase(); // observer 는 직접 수정은 불가하고.
+      user.age = user.age + 1; // 수정한 내용을 다시 할당해야 함
+    });
 
     // // 2. An Alternative way of updating the user variable
     // user( User( name: 'RUZIE' ) );
