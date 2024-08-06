@@ -6,17 +6,16 @@ import '/utils/ansi_color.dart';
 class Controller extends GetxController {
   // // reactive 변수 선언
   // final count = 0.obs;
-  // // var count = 0.obs; // var 로 선언해도 됨
 
   // normal 변수 선언 : GetBuilder<ControllerT> 작업에서 사용됨.
   int count = 0;
 
   void increment() {
     // count.value++; // final reactive 변수의 값 변경은 .value 로 접근하여 변경
-    count++; // var 로 선언한 경우는 .value 없이 변경 가능
-    // // update();  // GetX<Controller>( ... ) 사용 시 update() 없이도 UI 가 변경됨
+    count++; // normal 변수의 값 변경은 직접 변경
+    update(); // UI 반영 but GetX<Controller>( ... ) 사용 시 update() 없이도 UI 가 변경됨
 
-    update(['count1']); // 해당 id 의 GetBuilder 의 Controller 변수들만 UI 변경
+    // update(['count1']); // 해당 id 의 GetBuilder 의 Controller 변수들만 UI 변경
     // update([ 'count1' ], count < 10);  // 특정 조건에 따라 해당 해당 GetBuilder 의 UI 변경
   }
 
@@ -24,8 +23,8 @@ class Controller extends GetxController {
     debugPrint(info('### clearCount()'));
 
     // count.value = 0;
-    count = 0; // var 로 선언한 경우는 .value 없이 변경 가능
-    update(); // GetX<Controller>( ... ) 사용 시 update() 없이도 UI 가 변경됨
+    count = 0; // normal 변수의 값 변경은 직접 변경
+    update(); // UI 반영 but GetX<Controller>( ... ) 사용 시 update() 없이도 UI 가 변경됨
   }
 
   @override
