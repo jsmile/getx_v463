@@ -7,16 +7,16 @@ import './controller.dart';
 import './detail_page.dart';
 
 class DepnedencyView extends StatelessWidget {
-  const DepnedencyView({super.key});
+  DepnedencyView({super.key});
 
   // Singleton, one instance share with entire app.
   // // Controller constroller = Controller();
   // final controller = Get.put(Controller()); // Get.put() :  Singleton instance
 
-  // specific type of Controller
-  // final parent = Get.put<Parent>( Parent() );
-  // final child = Get.put<Parent>( child() );
-  // final child = Get.replace<Parent>( child() );
+  // specific the type of Controller
+  final parent = Get.put<Parent>(Parent());
+  // final child = Get.put<Parent>(Child());      // 이후에 선언된 Child() 는 무시됨
+  final child = Get.replace<Parent>(Child()); // 앞의 Parent() 를 Child() 로 대체시킴.
   // final child = Get.lazyReplace<Parent>( () => child() );
 
   // final controller2 = Get.put(Controller()); // Get.put() :  Singleton instance

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// import '../utils/ansi_color.dart';
+import '../utils/ansi_color.dart';
 import './controller.dart';
 import './classes.dart';
 
@@ -12,11 +12,12 @@ class DetailPage extends StatelessWidget {
   // final controller = Get.find<Controller>();
   Controller controller = Get.find();
   final controller2 = Get.find<Controller>();
-  // final child = Get.find<Parent>();
+  final child = Get.find<Parent>();
 
   @override
   Widget build(BuildContext context) {
-    // debugPrint(info('### is Child?  ${child is Child}'));
+    debugPrint(info('### is Child?  ${child is Child}'));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dependency Detail Page'),
