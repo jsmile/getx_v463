@@ -33,53 +33,56 @@ class DepnedencyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // // initialBinding: DetailsBinding(),
-      // getPages: [
-      //   GetPage(
-      //     name: '/detail',
-      //     page: () => DetailPage(),
-      //     // Binding 사용방법 1 :  호출하는 Wiget 에 Controller 전달을 위한 binding
-      //     binding: DetailBinding(),
-      //     // binding: BindingBuilder(() {
-      //     //   // // LazyLoad a dependency only when it is used.
-      //     //   // Get.lazyPut<Controller>(() => Controller());
-      //     //   // Get.lazyPut<Controller>(
-      //     //   //   // method will be excuted when your class
-      //     //   //   () => Controller(),
-      //     //   //   // same as Get.put()
-      //     //   //   tag: 'uniqueId for lazyPut',
-      //     //   //   // It is smilar to 'Permanent'
-      //     //   //   // delete() 시에도 메모리에 유지시켰다가 재 호출 시 빠른 생성여부 결정.
-      //     //   //   fenix: false,
-      //     //   // );
+      // initialBinding: DetailsBinding(),
+      getPages: [
+        GetPage(
+          name: '/detail',
+          page: () => DetailPage(),
+          // Binding 사용방법 1 :  호출하는 Wiget 에 Controller 전달을 위한 binding
+          // binding: DetailBinding(),
 
-      //     //   // Get.putAsync<AsyncTask>(
-      //     //   //   () async {
-      //     //   //     await Future.delayed(const Duration(seconds: 3)); // 3초 대기
-      //     //   //     return AsyncTask(); // async 작업 수행
-      //     //   //   },
-      //     //   //   // using Get.find<Controller>() with unique id
-      //     //   //   tag: 'uniqueId for putAsync',
-      //     //   //   // kept instance throughout the entire app.
-      //     //   //   permanent: false,
-      //     //   // );
+          // Binding 사용방법 3 :  Binding 클래스 생성없이 BindingsBuilder( ... ) 사용하기
+          // Controller 를 직접 전달함.
+          binding: BindingsBuilder(() {
+            // LazyLoad a dependency only when it is used.
+            Get.lazyPut<Controller>(() => Controller());
+            // Get.lazyPut<Controller>(
+            //   // method will be excuted when your class
+            //   () => Controller(),
+            //   // same as Get.put()
+            //   tag: 'uniqueId for lazyPut',
+            //   // It is smilar to 'Permanent'
+            //   // delete() 시에도 메모리에 유지시켰다가 재 호출 시 빠른 생성여부 결정.
+            //   fenix: false,
+            // );
 
-      //     //   // Create new instance every time, not Singleton instance
-      //     //   Get.create<Controller>(
-      //     //     // a function that returns a class
-      //     //     () => Controller(),
-      //     //     // tag: 'uniqueId for create',
-      //     //     permanent: true,
-      //     //   );
-      //     //   Get.create<Controller>(
-      //     //     // a function that returns a class
-      //     //     () => Controller(),
-      //     //     // tag: 'uniqueId for create',
-      //     //     permanent: true,
-      //     //   );
-      //     // }),
-      //   ),
-      // ],
+            //   // Get.putAsync<AsyncTask>(
+            //   //   () async {
+            //   //     await Future.delayed(const Duration(seconds: 3)); // 3초 대기
+            //   //     return AsyncTask(); // async 작업 수행
+            //   //   },
+            //   //   // using Get.find<Controller>() with unique id
+            //   //   tag: 'uniqueId for putAsync',
+            //   //   // kept instance throughout the entire app.
+            //   //   permanent: false,
+            //   // );
+
+            //   // Create new instance every time, not Singleton instance
+            //   Get.create<Controller>(
+            //     // a function that returns a class
+            //     () => Controller(),
+            //     // tag: 'uniqueId for create',
+            //     permanent: true,
+            //   );
+            //   Get.create<Controller>(
+            //     // a function that returns a class
+            //     () => Controller(),
+            //     // tag: 'uniqueId for create',
+            //     permanent: true,
+            //   );
+          }),
+        ),
+      ],
 
       home: Scaffold(
         appBar: AppBar(
@@ -119,14 +122,14 @@ class DepnedencyView extends StatelessWidget {
               //   ),
               // ),
               ElevatedButton(
-                onPressed: () => Get.to(
-                  () => DetailPage(),
-                  // Binding 사용방법 2 : Get.to( ..., binding: ... ) 으로 Controller 전달
-                  binding: DetailBinding(),
-                ),
-                // onPressed: () => Get.toNamed(
-                //   '/detail',
+                // onPressed: () => Get.to(
+                //   () => DetailPage(),
+                //   // Binding 사용방법 2 : Get.to( ..., binding: ... ) 으로 Controller 전달
+                //   binding: DetailBinding(),
                 // ),
+                onPressed: () => Get.toNamed(
+                  '/detail',
+                ),
                 child: const Text('Detail Page'),
               ),
             ],
