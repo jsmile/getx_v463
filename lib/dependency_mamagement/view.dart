@@ -44,19 +44,24 @@ class DepnedencyView extends StatelessWidget {
             // LazyLoad a dependency only when it is used.
             Get.lazyPut<Controller>(() => Controller());
             // Get.lazyPut<Controller>(
-            //   // method will be excuted when you
+            //   // method will be excuted when your class
             //   () => Controller(),
             //   // same as Get.put()
             //   tag: 'uniqueId for lazyPut',
             //   // It is smilar to 'Permanent'
-            //   // recreate the instance from 'same place'
+            //   // delete() 시에도 메모리에 유지시켰다가 재 호출 시 빠른 생성여부 결정.
             //   fenix: false,
             // );
-            // Get.AsyncLazyPut<AxyncTask>(
-            //   () async {
-            //     await Future.delayed( const Duration(seconds: 1) );
-            //   }
-            // );
+            Get.putAsync<AsyncTask>(
+              () async {
+                await Future.delayed(const Duration(seconds: 3)); // 3초 대기
+                return AsyncTask(); // async 작업 수행
+              },
+              // using Get.find<Controller>() with unique id
+              tag: 'uniqueId for putAsync',
+              // kept instance throughout the entire app.
+              permanent: false,
+            );
           }),
         ),
       ],
