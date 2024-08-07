@@ -7,11 +7,11 @@ import './controller.dart';
 import './detail_page.dart';
 
 class DepnedencyView extends StatelessWidget {
-  DepnedencyView({super.key});
+  const DepnedencyView({super.key});
 
   // Singleton, one instance share with entire app.
-  // Controller constroller = Controller();
-  final controller = Get.put(Controller()); // Get.put() :  Singleton instance
+  // // Controller constroller = Controller();
+  // final controller = Get.put(Controller()); // Get.put() :  Singleton instance
 
   // specific type of Controller
   // final parent = Get.put<Parent>( Parent() );
@@ -19,43 +19,47 @@ class DepnedencyView extends StatelessWidget {
   // final child = Get.replace<Parent>( child() );
   // final child = Get.lazyReplace<Parent>( () => child() );
 
-  // final controller2 = Get.put( Controller() );
+  // final controller2 = Get.put(Controller()); // Get.put() :  Singleton instance
+  // // not singleton instance but multiple instances by tag:
   // final controller2 = Get.put(
   //   Controller(),
   //   // multiple classes that are of the same type
   //   // using Get.find<Controller>() with unique id
   //   tag: 'uniqueId',
   //   // keep instance throughout the entire app.
-  //   permanent: false,
+  //   // permanent: false,
   // );
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       // initialBinding: DetailsBinding(),
-      // getPages: [
-      //   GetPage(
-      //     name: '/detail',
-      //     page: () => const DetailPage(),
-      //     // binding: DetailsBinding(),
-      //     binding: BindingsBuilder(
-      //       // LazyLoad a dependency only when it is used.
-      //       ( ) {
-      //         Get.lazyPut<Controller>( () => Controller() );
-      //         // Get.lazyPut<Controller>(
-      //         //   // method will be excuted when you
-      //         //   () => Controller(),
-      //         //   // same as Get.put()
-      //         //   tag: 'uniqueId for lazyPut',
-      //         //   // It is smilar to 'Permanent'
-      //         //   // recreate the instance from 'same place'
-      //         //   fenix: false,
-      //         // );
-      //       }
-      //     ),
-
-      //   ),
-      // ],
+      getPages: [
+        GetPage(
+          name: '/detail',
+          page: () => DetailPage(),
+          // 호출하는 Wiget 에 Controller 전달을 위한 binding
+          // binding: DetailsBinding(),
+          binding: BindingsBuilder(() {
+            // LazyLoad a dependency only when it is used.
+            Get.lazyPut<Controller>(() => Controller());
+            // Get.lazyPut<Controller>(
+            //   // method will be excuted when you
+            //   () => Controller(),
+            //   // same as Get.put()
+            //   tag: 'uniqueId for lazyPut',
+            //   // It is smilar to 'Permanent'
+            //   // recreate the instance from 'same place'
+            //   fenix: false,
+            // );
+            // Get.AsyncLazyPut<AxyncTask>(
+            //   () async {
+            //     await Future.delayed( const Duration(seconds: 1) );
+            //   }
+            // );
+          }),
+        ),
+      ],
 
       home: Scaffold(
         appBar: AppBar(
@@ -65,13 +69,13 @@ class DepnedencyView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Reactive State Management
-              Obx(
-                () => Text(
-                  '${controller.count.value}', // 수정이 아닌 조회 시에는 .value 사용
-                  style: const TextStyle(fontSize: 30),
-                ),
-              ),
+              // // Reactive State Management
+              // Obx(
+              //   () => Text(
+              //     '${controller.count.value}', // 수정이 아닌 조회 시에는 .value 사용
+              //     style: const TextStyle(fontSize: 30),
+              //   ),
+              // ),
               // Obx(
               //   () => Text(
               //     '${controller2.count.value}', // 수정이 아닌 조회 시에는 .value 사용
@@ -94,24 +98,24 @@ class DepnedencyView extends StatelessWidget {
               //     style: const TextStyle(fontSize: 30),
               //   ),
               // ),
-              // ElevatedButton(
-              //   // onPressed: () => Get.to(
-              //   //   () => DetailPage(),
-              //   // ),
-              //   onPressed: () => Get.toNamed(
-              //     '/detail',
-              //   ),
-              //   child: const Text('Detail Page'),
-              // ),
+              ElevatedButton(
+                // onPressed: () => Get.to(
+                //   () => DetailPage(),
+                // ),
+                onPressed: () => Get.toNamed(
+                  '/detail',
+                ),
+                child: const Text('Detail Page'),
+              ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.find<Controller>().increment(),
-          // onPressed: () => Get.find<Controller>( tag: 'uniqueId' ).increment(),
-          // onPressed: () => controller.increment(),
-          child: const Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   // onPressed: () => Get.find<Controller>().increment(),
+        //   onPressed: () => Get.find<Controller>(tag: 'uniqueId').increment(),
+        //   // onPressed: () => controller.increment(),
+        //   child: const Icon(Icons.add),
+        // ),
       ),
     );
   }
