@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import './classes.dart';
 import './controller.dart';
 
-class DetailsBinding implements Bindings {
+class DetailBinding implements Bindings {
   @override
   void dependencies() {
     // LazyLoad a dependency only when it is used.

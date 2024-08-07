@@ -7,17 +7,17 @@ import './controller.dart';
 import './detail_page.dart';
 
 class DepnedencyView extends StatelessWidget {
-  DepnedencyView({super.key});
+  const DepnedencyView({super.key});
 
   // Singleton, one instance share with entire app.
   // // Controller constroller = Controller();
   // final controller = Get.put(Controller()); // Get.put() :  Singleton instance
 
-  // specific the type of Controller
-  final parent = Get.put<Parent>(Parent());
-  // final child = Get.put<Parent>(Child());      // 이후에 선언된 Child() 는 무시됨
-  final child = Get.replace<Parent>(Child()); // 앞의 Parent() 를 Child() 로 대체시킴.
-  // final child = Get.lazyReplace<Parent>( () => child() );
+  // // specific the type of Controller
+  // final parent = Get.put<Parent>(Parent());
+  // // final child = Get.put<Parent>(Child());      // 이후에 선언된 Child() 는 무시됨
+  // final child = Get.replace<Parent>(Child()); // 앞의 Parent() 를 Child() 로 대체시킴.
+  // // final child = Get.lazyReplace<Parent>( () => child() );
 
   // final controller2 = Get.put(Controller()); // Get.put() :  Singleton instance
   // // not singleton instance but multiple instances by tag:
@@ -38,46 +38,46 @@ class DepnedencyView extends StatelessWidget {
         GetPage(
           name: '/detail',
           page: () => DetailPage(),
-          // 호출하는 Wiget 에 Controller 전달을 위한 binding
-          // binding: DetailsBinding(),
-          binding: BindingsBuilder(() {
-            // // LazyLoad a dependency only when it is used.
-            // Get.lazyPut<Controller>(() => Controller());
-            // Get.lazyPut<Controller>(
-            //   // method will be excuted when your class
-            //   () => Controller(),
-            //   // same as Get.put()
-            //   tag: 'uniqueId for lazyPut',
-            //   // It is smilar to 'Permanent'
-            //   // delete() 시에도 메모리에 유지시켰다가 재 호출 시 빠른 생성여부 결정.
-            //   fenix: false,
-            // );
+          // Binding 사용방법 1 :  호출하는 Wiget 에 Controller 전달을 위한 binding
+          binding: DetailBinding(),
+          // binding: BindingBuilder(() {
+          //   // // LazyLoad a dependency only when it is used.
+          //   // Get.lazyPut<Controller>(() => Controller());
+          //   // Get.lazyPut<Controller>(
+          //   //   // method will be excuted when your class
+          //   //   () => Controller(),
+          //   //   // same as Get.put()
+          //   //   tag: 'uniqueId for lazyPut',
+          //   //   // It is smilar to 'Permanent'
+          //   //   // delete() 시에도 메모리에 유지시켰다가 재 호출 시 빠른 생성여부 결정.
+          //   //   fenix: false,
+          //   // );
 
-            // Get.putAsync<AsyncTask>(
-            //   () async {
-            //     await Future.delayed(const Duration(seconds: 3)); // 3초 대기
-            //     return AsyncTask(); // async 작업 수행
-            //   },
-            //   // using Get.find<Controller>() with unique id
-            //   tag: 'uniqueId for putAsync',
-            //   // kept instance throughout the entire app.
-            //   permanent: false,
-            // );
+          //   // Get.putAsync<AsyncTask>(
+          //   //   () async {
+          //   //     await Future.delayed(const Duration(seconds: 3)); // 3초 대기
+          //   //     return AsyncTask(); // async 작업 수행
+          //   //   },
+          //   //   // using Get.find<Controller>() with unique id
+          //   //   tag: 'uniqueId for putAsync',
+          //   //   // kept instance throughout the entire app.
+          //   //   permanent: false,
+          //   // );
 
-            // Create new instance every time, not Singleton instance
-            Get.create<Controller>(
-              // a function that returns a class
-              () => Controller(),
-              // tag: 'uniqueId for create',
-              permanent: true,
-            );
-            Get.create<Controller>(
-              // a function that returns a class
-              () => Controller(),
-              // tag: 'uniqueId for create',
-              permanent: true,
-            );
-          }),
+          //   // Create new instance every time, not Singleton instance
+          //   Get.create<Controller>(
+          //     // a function that returns a class
+          //     () => Controller(),
+          //     // tag: 'uniqueId for create',
+          //     permanent: true,
+          //   );
+          //   Get.create<Controller>(
+          //     // a function that returns a class
+          //     () => Controller(),
+          //     // tag: 'uniqueId for create',
+          //     permanent: true,
+          //   );
+          // }),
         ),
       ],
 
