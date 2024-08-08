@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // import 'state_management/simple_state_management.dart';
 // import 'getx_controller/view.dart';
 // import 'dependency_mamagement/view.dart';
-import 'translations/translations_view.dart';
+import 'translations/translations_example.dart';
 
 void main() {
   // ansi color log 초기화
@@ -26,6 +26,6 @@ void main() {
   // // GetX Dependency Management
   // runApp(DepnedencyView());
 
-  // GetX TranslationView Management
-  runApp(TranslationView());
+  // GetX TranslationsExample Management
+  runApp(const TranslationsExample());
 }
