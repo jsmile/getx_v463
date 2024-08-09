@@ -33,13 +33,15 @@ class ThemesView extends StatelessWidget {
                   // themeController.changeThemeMode(ThemeMode.light);
                   // change the theme to the light theme.
                   themeController.changeTheme(Themes.lightTheme);
-                  // themeController.saveTheme(false);
+                  // local storage에 저장
+                  themeController.saveTheme(false);
                 } else {
                   // // change the ThemeMode instead of theme
                   // themeController.changeThemeMode(ThemeMode.dark);
                   // change the theme to the dark theme.
                   themeController.changeTheme(Themes.darkTheme);
-                  // themeController.saveTheme(true);
+                  // local storage에 저장
+                  themeController.saveTheme(true);
                 }
               },
               child: const Text('Change Theme'),
