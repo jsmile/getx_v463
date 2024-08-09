@@ -1,17 +1,20 @@
 import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'themes/themes_example.dart';
 
 // import 'navigation/get_navigation.dart';
 // import 'state_management/reactive_state_management.dart';
 // import 'state_management/simple_state_management.dart';
 // import 'getx_controller/view.dart';
 // import 'dependency_mamagement/view.dart';
-import 'translations/translations_example.dart';
+// import 'translations/translations_example.dart';
 
-void main() {
+void main() async {
   // ansi color log 초기화
   ansiColorDisabled = false;
 
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -43,8 +46,11 @@ class MyApp extends StatelessWidget {
       // // GetX Dependency Management
       // home: const DepnedencyView(),
 
-      // GetX TranslationsExample Management
-      home: const TranslationsExample(),
+      // // GetX TranslationsExample Management
+      // home: const TranslationsExample(),
+
+      // GetX Change Theme
+      home: ThemesExample(),
     );
   }
 }
