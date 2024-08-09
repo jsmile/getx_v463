@@ -10,7 +10,7 @@ class GetXControllerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 단순한 Obx(...) 에서 GetXController 를 사용하기 위해 선언함.
-    // final controller = Get.put(Controller());
+    final controller = Get.put(Controller());
 
     return GetMaterialApp(
       home: Scaffold(
@@ -65,8 +65,8 @@ class GetXControllerView extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.find<Controller>().increment(),
-          // onPressed: () => controller.increment(),
+          // onPressed: () => Get.find<Controller>().increment(),
+          onPressed: () => controller.increment(),
           child: const Icon(Icons.add),
         ),
       ),
