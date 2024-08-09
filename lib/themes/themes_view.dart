@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_v463/themes/themes_controller.dart';
 
-// import 'theme.dart';
+import 'theme.dart';
 
 class ThemesView extends StatelessWidget {
   ThemesView({super.key});
@@ -29,17 +29,17 @@ class ThemesView extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (Get.isDarkMode) {
-                  // change the ThemeMode instead of theme
-                  themeController.changeThemeMode(ThemeMode.light);
-                  // // change the theme to the light theme.
-                  // themeController.changeTheme(Themes.lightTheme);
-                  themeController.saveTheme(false);
+                  // // change the ThemeMode instead of theme
+                  // themeController.changeThemeMode(ThemeMode.light);
+                  // change the theme to the light theme.
+                  themeController.changeTheme(Themes.lightTheme);
+                  // themeController.saveTheme(false);
                 } else {
-                  // change the ThemeMode instead of theme
-                  themeController.changeThemeMode(ThemeMode.dark);
-                  // // change the theme to the dark theme.
-                  // themeController.changeTheme(Themes.darkTheme);
-                  themeController.saveTheme(true);
+                  // // change the ThemeMode instead of theme
+                  // themeController.changeThemeMode(ThemeMode.dark);
+                  // change the theme to the dark theme.
+                  themeController.changeTheme(Themes.darkTheme);
+                  // themeController.saveTheme(true);
                 }
               },
               child: const Text('Change Theme'),
