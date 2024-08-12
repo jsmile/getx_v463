@@ -9,6 +9,8 @@ import '../utils/ansi_color.dart';
   GetXController 는 GetBuilder, Obx, GetX 등을 사용하여 UI 를 업데이트 하지만,
   GetX Service 는 GetXController 와 달리 UI 와 상관없이 동작하며, 
   APP 전체와 관련된 작업( 데이터를 저장하거나, 다른 서비스와 통신 ) 등에 적합함.
+  GetX Service 는 GetXController 와 달리 Get.put() 대신 Get.putAsync() 를 사용함.
+  GetX Service 로 관리하는 state 는 .obx 의 Obsservable 변수 사용 시 .value 가 필요없음.
 */
 class SettingsService extends GetxService {
   late SharedPreferences _prefs;
