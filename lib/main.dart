@@ -11,7 +11,7 @@ import 'utils/ansi_color.dart';
 import 'getx_service/settings_service.dart';
 
 // import 'navigation/get_navigation.dart';
-// import 'state_management/reactive_state_management.dart';
+import 'state_management/reactive_state_management.dart';
 // import 'state_management/simple_state_management.dart';
 // import 'getx_controller/view.dart';
 // import 'dependency_mamagement/view.dart';
